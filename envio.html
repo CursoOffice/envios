@@ -193,6 +193,18 @@
     <img src="img/logo.png" alt="Logo">
     <h1>Sistema de Gestión de Envíos</h1>
   </header>
+  <!-- Botón en el header -->
+<button id="cerrarSesion" onclick="cerrarSesion()">Cerrar Sesión</button>
+
+<script>
+  // Función para cerrar sesión y redirigir al login
+  function cerrarSesion() {
+    if (confirm("¿Deseas cerrar sesión?")) {
+      window.location.href = "login.html"; // Redirige al login
+    }
+  }
+</script>
+
 
   <!-- FORMULARIO -->
   <div class="formulario">
@@ -319,3 +331,4 @@
   </script>
 </body>
 </html>
+
