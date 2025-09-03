@@ -3,319 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Factura de Envío</title>
+  <title>Inicio de Sesión - Sistema de Envíos Fragua</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* ====== ESTILO GENERAL ====== */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    body, html {
+      height: 100%;
       margin: 0;
-      background: linear-gradient(135deg, #f0f4f8, #d9e4ec);
-      color: #333;
-      padding-top: 90px; /* Espacio para el header fijo */
+      font-family: Arial, sans-serif;
+      overflow: hidden;
     }
-
-    /* ====== HEADER FIJO ====== */
-    header {
-      background: #1abc9c;
-      color: #fff;
-      padding: 15px 0;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    .bg-video {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 1000;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
     }
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-      letter-spacing: 1px;
-    }
-    header img {
-      height: 40px;
-      vertical-align: middle;
-      margin-right: 10px;
-    }
-
-    /* ====== FOOTER ====== */
-    footer {
-      background: #34495e;
-      color: #fff;
-      text-align: center;
-      padding: 15px 0;
-      margin-top: 40px;
-      font-size: 14px;
-    }
-    footer a {
-      color: #1abc9c;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* ====== FORMULARIO ====== */
-    .formulario {
-      max-width: 750px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-    .formulario h2 {
-      margin-bottom: 20px;
-      color: #2c3e50;
-      text-align: center;
-    }
-    .formulario label {
-      display: block;
-      margin-top: 12px;
-      font-weight: bold;
-      font-size: 14px;
-      color: #444;
-    }
-    .formulario input, .formulario textarea {
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
-      transition: all 0.3s ease;
-    }
-    .formulario input:focus, .formulario textarea:focus {
-      border-color: #1abc9c;
-      box-shadow: 0 0 8px rgba(26, 188, 156, 0.3);
-      outline: none;
-    }
-    .formulario button {
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: linear-gradient(135deg, #1abc9c, #16a085);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      width: 100%;
-      transition: transform 0.2s ease, background 0.3s ease;
-    }
-    .formulario button:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(135deg, #16a085, #149174);
-    }
-
-    /* ====== FACTURA ====== */
-    .factura {
-      background-color: #fff;
-      border-radius: 12px;
-      border: 1px solid #ccc;
-      padding: 30px;
-      max-width: 750px;
-      margin: auto;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.15);
-      display: none;
-    }
-    .factura-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #1abc9c;
-      padding-bottom: 12px;
-      margin-bottom: 20px;
-    }
-    .factura-header img {
-      height: 60px;
-    }
-    .factura-title {
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: #1abc9c;
-      margin-bottom: 25px;
-    }
-
-    /* ====== SEMÁFORO ====== */
-    .semaforo {
+    .login-container {
+      height: 100vh;
       display: flex;
       justify-content: center;
-      margin-top: 20px;
-      gap: 8px;
+      align-items: center;
     }
-    .semaforo div {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      background-color: #ccc;
-      transition: background 0.4s ease;
-    }
-    .activo { background-color: yellow !important; box-shadow: 0 0 8px yellow; }
-    .transito { background-color: orange !important; box-shadow: 0 0 8px orange; }
-    .entregado { background-color: green !important; box-shadow: 0 0 8px green; }
-
-    /* ====== BOTONES DE ACCIÓN ====== */
-    #acciones {
+    .login-box {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
       text-align: center;
-      margin-top: 30px;
-      display: none;
     }
-    #acciones button {
-      padding: 12px 25px;
-      font-size: 15px;
-      margin: 0 10px;
-      border: none;
-      border-radius: 6px;
-      background-color: #34495e;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
+    .login-box img {
+      width: 100px;
+      margin-bottom: 20px;
     }
-    #acciones button:hover {
-      background-color: #2c3e50;
-      transform: scale(1.05);
+    .login-box h2 {
+      margin-bottom: 20px;
+      color: #2c3e50;
     }
-
-    /* ====== IMPRESIÓN ====== */
-    @media print {
-      body * { visibility: hidden; }
-      .factura, .factura * { visibility: visible; }
-      .factura { position: absolute; left: 0; top: 0; width: 100%; }
+    .form-control {
+      border-radius: 10px;
+    }
+    button {
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-  <!-- HEADER FIJO -->
-  <header>
-    <img src="img/logo.png" alt="Logo">
-    <h1>Sistema de Gestión de Envíos</h1>
-  </header>
+    
+  <video autoplay muted loop class="bg-video">
+    <source src="img/video.pgn.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
 
-  <!-- FORMULARIO -->
-  <div class="formulario">
-    <h2>Registrar Envío</h2>
-    <label>Nombre del Remitente</label>
-    <input type="text" id="remitente" placeholder="Ej: Juan Pérez">
-    <label>Nombre del Destinatario</label>
-    <input type="text" id="destinatario" placeholder="Ej: María Gómez">
-    <label>Teléfono</label>
-    <input type="text" id="telefono" placeholder="Ej: 3001234567">
-    <label>Dirección de Entrega</label>
-    <input type="text" id="direccion" placeholder="Ej: Calle 10 #5-20">
-    <label>Descripción del Producto</label>
-    <textarea id="descripcion" placeholder="Detalles del producto"></textarea>
-    <label>Valor Declarado</label>
-    <input type="number" id="valor" placeholder="Ej: 50000">
-    <label>Observaciones</label>
-    <textarea id="observaciones" placeholder="Notas adicionales"></textarea>
-    <label>Foto del Producto</label>
-    <input type="file" id="imagenProducto" accept="image/*">
-    <button onclick="generarFactura()">Generar Factura</button>
+  <div class="login-container">
+    <div class="login-box">
+      <img src="img/logo.png" alt="Logo del sistema">
+      <h2>Iniciar Sesión Fragua</h2>
+      <form id="login-form">
+        <div class="mb-3">
+          <input type="text" id="usuario" class="form-control" placeholder="Usuario" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" id="contrasena" class="form-control" placeholder="Contraseña" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+      </form>
+    </div>
   </div>
 
-  <div class="factura" id="vistaFactura"></div>
-
-  <div class="semaforo" id="estadoEnvio" style="display:none;">
-    <div id="semaforoActivo"></div>
-    <div id="semaforoTransito"></div>
-    <div id="semaforoEntregado"></div>
+  <!-- Modal de bienvenida -->
+  <div class="modal fade" id="bienvenidaModal" tabindex="-1" aria-labelledby="bienvenidaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bienvenidaModalLabel">¡Bienvenido Administrador!</h5>
+        </div>
+        <div class="modal-body text-center">
+          <p id="fechaHora"></p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div id="acciones">
-    <button onclick="window.print()">Imprimir</button>
-    <button onclick="location.reload()">Nuevo Envío</button>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2025 Sistema de Envíos | Desarrollado por <a href="#">Tu Empresa</a></p>
-  </footer>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    function generarFactura() {
-      const remitente = document.getElementById("remitente").value;
-      const destinatario = document.getElementById("destinatario").value;
-      const telefono = document.getElementById("telefono").value;
-      const direccion = document.getElementById("direccion").value;
-      const descripcion = document.getElementById("descripcion").value;
-      const valor = document.getElementById("valor").value;
-      const observaciones = document.getElementById("observaciones").value;
-      const imagen = document.getElementById("imagenProducto").files[0];
-      const vista = document.getElementById("vistaFactura");
-      const guia = Math.floor(100000 + Math.random() * 900000);
-      const reader = new FileReader();
+    document.getElementById("login-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const usuario = document.getElementById("usuario").value;
+      const contrasena = document.getElementById("contrasena").value;
 
-      const estado = "activo";
-      actualizarSemaforo(estado);
+      if (usuario === "Admin" && contrasena === "Jhose2024@") {
+        const now = new Date();
+        const fechaHora = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+        document.getElementById("fechaHora").textContent = `Fecha y hora de ingreso: ${fechaHora}`;
 
-      reader.onload = function(e) {
-        const facturaHTML = `
-          <div class="factura-header">
-            <img src="img/logo.png" alt="Logo">
-            <div>
-              <strong>Guía: #${guia}</strong><br>
-              Fecha: ${new Date().toLocaleDateString()}<br>
-              Hora: ${new Date().toLocaleTimeString()}
-            </div>
-          </div>
-          <div class="factura-title">Factura de Envío</div>
-          <div class="factura-section">
-            <h3>Remitente</h3>
-            <p>${remitente}</p>
-          </div>
-          <div class="factura-section">
-            <h3>Destinatario</h3>
-            <p>${destinatario}</p>
-            <p>Tel: ${telefono}</p>
-            <p>Dirección: ${direccion}</p>
-          </div>
-          <div class="factura-section">
-            <h3>Producto</h3>
-            <p>${descripcion}</p>
-            <p><strong>Valor Declarado:</strong> $${valor}</p>
-            <p><strong>Observaciones:</strong> ${observaciones}</p>
-            ${e.target.result ? `<img src="${e.target.result}" class="producto-img">` : ''}
-          </div>
-          <div class="barcode">
-            <img src="https://barcode.tec-it.com/barcode.ashx?data=${guia}&code=Code128&dpi=96" alt="Código de barras">
-          </div>
-        `;
-        vista.innerHTML = facturaHTML;
-        vista.style.display = "block";
-        document.querySelector(".formulario").style.display = "none";
-        document.getElementById("acciones").style.display = "block";
-        document.getElementById("estadoEnvio").style.display = "flex";
-        guardarEnvioLocal({ guia, remitente, destinatario, telefono, direccion, descripcion, valor, observaciones, fecha: new Date().toISOString(), estado });
-      };
-      if (imagen) {
-        reader.readAsDataURL(imagen);
+        const bienvenidaModal = new bootstrap.Modal(document.getElementById("bienvenidaModal"));
+        bienvenidaModal.show();
+
+        setTimeout(() => {
+          window.location.href = "envio.html";
+        }, 3000); // Redirige después de 3 segundos
       } else {
-        reader.onload({target: {result: ''}});
+        alert("Usuario o contraseña incorrectos");
       }
-    }
-
-    function guardarEnvioLocal(datos) {
-      const registros = JSON.parse(localStorage.getItem("enviosZima") || "[]");
-      registros.push(datos);
-      localStorage.setItem("enviosZima", JSON.stringify(registros));
-    }
-
-    function actualizarSemaforo(estado) {
-      document.getElementById("semaforoActivo").className = "";
-      document.getElementById("semaforoTransito").className = "";
-      document.getElementById("semaforoEntregado").className = "";
-
-      if (estado === "activo") {
-        document.getElementById("semaforoActivo").className = "activo";
-      } else if (estado === "transito") {
-        document.getElementById("semaforoTransito").className = "transito";
-      } else if (estado === "entregado") {
-        document.getElementById("semaforoEntregado").className = "entregado";
-      }
-    }
+    });
   </script>
 </body>
 </html>
